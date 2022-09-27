@@ -416,14 +416,7 @@
         
           <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
-    4. 更换蓝鲸域名证书（所有操作在中控机上执行）
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    5. 证书续费（自动续费）
+    4. 证书续费（自动续费）
   </a>
   
 </li>
@@ -534,40 +527,7 @@ sudo ln -s /var/lib/snapd/snap /snap
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720224306/18438/20220720224306/--85d79b2ab4b1f222004b0c86fa8ff3c5.png" /></p>
 <p>解析完成以后，直接回车，校验没问题的话，会返回证书在服务器的位置和到期时间，因为这是免费的，所以使用期限只有3个月，后面会介绍自动续费的方式</p>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720224531/18438/20220720224531/--7a03ee59e3964f00b85be2b6c82540cc.png" /></p>
-<h3 id="4">4. 更换蓝鲸域名证书（所有操作在中控机上执行）<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
-<p>蓝鲸证书的地址和名字（名字不能修改）：/data/src/cert/目录下的bk_domain.crt和bk_domain.key</p>
-<p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720224824/18438/20220720224824/--09678b13f91918d3dc067871e452b8a3.png" /></p>
-<p>我们申请的证书在服务器的/etc/letsencrypt/live/chenshanb3.com/目录下</p>
-<p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720224938/18438/20220720224938/--faeb0a403a9ceb76f9b0cb854af66d6e.png" /></p>
-<p>这里的fullchain.pem和privkey.pem就是对应的bk_domain.crt和bk_domain.key，这里注意不需要做pem转crt的多余操作，经测试可以直接拿来用。一种方式的将文件传输到蓝鲸中控机改名替换，还有一种方式就是直接vim复制粘贴bk_domain.crt和bk_domain.key里面的内容，可以自由选择。证书替换成我们申请的正式以后，使用官方文档介绍的后续办法https://bk.tencent.com/docs/document/6.0/127/7581，分发证书和修改配置:</p>
-<p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720225456/18438/20220720225456/--c4ce63eb316b4c4b3838f61996f8e980.png" /></p>
-<p>蓝盾平台http转https在中控机上的install目录下执行：</p>
-<div class="highlight"><pre><span></span><code>/data/src/ci/scripts/bk-ci-utils-https.sh https
-</code></pre></div>
-<p>PS: 如果你的gitlab也是https的，则需要改一下ci的网关协议，在中控机上执行：</p>
-<p><div class="highlight"><pre><span></span><code>vim /data/install/bin/03-userdef/ci.env
-<span class="nv">将BK_CI_REPOSITORY_GITLAB_URL</span><span class="o">=</span>http://<span class="nv">$BK_CI_FQDN改为BK_CI_REPOSITORY_GITLAB_URL</span><span class="o">=</span>https://<span class="nv">$BK_CI_FQDN</span>
-然后在标准运维里重新部署一下ci
-
-再执行
-/data/src/ci/scripts/bk-ci-utils-https.sh https
-</code></pre></div>
-or 
-<div class="highlight"><pre><span></span><code>登录ci机器
-vim /data/bkce/etc/ci/application-repository.yml
-把apiUrl 修改为 https
-
-<span class="c1"># gitlab v4.</span>
-gitlab:
-apiUrl: https://devops.bktencent.com:443/api/v4
-重启 bk-ci-repository.service 服务
-systemctl restart bk-ci-repository.service
-
-这个方案只能临时解决，免去重新部署，最终还是要修改
-/data/install/bin/03-userdef/ci.env的BK_CI_REPOSITORY_GITLAB_URL
-</code></pre></div></p>
-<p>然后就可以使用https访问paas平台了，此时链接旁边的小锁就变成绿色的了。</p>
-<h3 id="5">5. 证书续费（自动续费）<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<h3 id="4">4. 证书续费（自动续费）<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <p>其实续费很简单，流程和申请一样：</p>
 <div class="highlight"><pre><span></span><code>certbot renew  --cert-name zkmlops.com <span class="c1"># 证书有效期小于30天才会renew</span>
 certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强行renew</span>
