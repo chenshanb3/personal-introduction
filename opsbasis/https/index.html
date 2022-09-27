@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              申请免费的HTTPS证书
+              申请SSL证书
             
           </span>
         </div>
@@ -350,12 +350,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          申请免费的HTTPS证书
+          申请SSL证书
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        申请免费的HTTPS证书
+        申请SSL证书
       </a>
       
         
@@ -449,7 +449,7 @@
   
     <li class="md-nav__item">
       <a href="../geoip/" class="md-nav__link">
-        禁止非中国大陆IP访问我们的系统
+        限制访问IP
       </a>
     </li>
   
@@ -476,7 +476,7 @@
                 
 
 
-  <h1>申请免费的HTTPS证书</h1>
+  <h1>申请SSL证书</h1>
 
 <h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>HTTP协议是超文本传输协议的缩写，英文是Hyper Text Transfer Protocol。它是从WEB服务器传输超文本标记语言(HTML)到本地浏览器的传送协议，HTTP信息是明文传输，HTTPS则是具有安全性的ssl/tls加密传输协议。HTTP的连接很简单，是无状态的；HTTPS协议是由SSL/TLS+HTTP协议构建的可进行加密传输、身份认证的网络协议，比HTTP协议安全，官方文档已经有切换HTTPS的指导手册了<a href="https://bk.tencent.com/docs/document/6.0/127/7581">http切换https</a>,我为什么会在这里多此一举呢，是因为使用服务器生成的证书在访问的时候，浏览器会提示不安全，证书不可信，具体的原因可以自行搜索一下（可信的CA机构）。</p>
@@ -632,13 +632,13 @@ certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强�
       
       
         
-        <a href="../geoip/" class="md-footer__link md-footer__link--next" aria-label="Next: 禁止非中国大陆IP访问我们的系统" rel="next">
+        <a href="../geoip/" class="md-footer__link md-footer__link--next" aria-label="Next: 限制访问IP" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              禁止非中国大陆IP访问我们的系统
+              限制访问IP
             </div>
           </div>
           <div class="md-footer__button md-icon">
