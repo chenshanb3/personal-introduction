@@ -399,40 +399,13 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    前言
-  </a>
-  
-    <nav class="md-nav" aria-label="前言">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 什么是统一身份认证
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 为什么需要统一认证
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
     组件介绍
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     部署手册
   </a>
   
@@ -526,40 +499,13 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    前言
-  </a>
-  
-    <nav class="md-nav" aria-label="前言">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    1. 什么是统一身份认证
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    2. 为什么需要统一认证
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
     组件介绍
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     部署手册
   </a>
   
@@ -628,25 +574,26 @@
 
   <h1>LDAP</h1>
 
-<h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>（本帖持续更新，部署过程遇到问题欢迎提问）
-蓝鲸平台已经提供了支持LDAP协议的MAD和OpenLDAP的域账号接入，但是关于域账号的管理，比如找回密码、修改个人信息等功能是暂缺的，我想大牛们也在逐步完善，今天我就抛砖引玉，先提供一个简单的域账号管理后台，本系统采用Django+Vue前后端分离的方式开发的，需要一台服务器进行部署，可以部署在单独的服务器上，也可以部署在蓝鲸平台服务器上，能将端口通过nginx提供给用户访问即可。</p>
-<h3 id="1">1. 什么是统一身份认证<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<div class="admonition cs3">
+<p class="admonition-title">什么是统一身份认证</p>
+</div>
 <p>随着信息技术和网络技术的迅猛发展，企业内部的应用系统越来越多。比如在媒体行业，常见的应用系统就有采编系统、排版系统、印刷系统、广告管理系 统、财务系统、办公自动化系统、决策支持系统、客户关系管理系统和网站发布系统等。由于这些系统互相独立，用户在使用每个应用系统之前都必须按照 相应的系统身份进行登录，为此用户必须记住每一个系统的用户名和密码，这给用户带来了不少麻烦。特别是随着系统的增多，出错的可能性就会增加，受 到非法截获和破坏的可能性也会增大，安全性就会相应降低。针对于这种情况，统一用户认证、单点登录等概念应运而生，同时不断地被应用到企业应用系 统中。
     所谓身份认证，就是判断一个用户是否为合法用户的处理过程。最常用的简单身份认证方式是系统通过核对用户输入的用户名和口令，看其是否与系统中存  储的该用户的用户名和口令一致，来判断用户身份是否正确。复杂一些的身份认证方式采用一些较复杂的加密算法与协议，需要用户出示更多的信息(如私钥) 来证明自己的身份，如Kerberos身份认证系统。
 身份认证一般与授权控制是相互联系的，授权控制是指一旦用户的身份通过认证以后，确定哪些资源该用户可以访问、可以进行何种方式的访问操作等问 题。在一个数字化的工作体系中，应该有一个统一的身份认证系统供各应用系统使用，但授权控制可以由各应用系统自己管理。</p>
-<h3 id="2">2. 为什么需要统一认证<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<div class="admonition cs3">
+<p class="admonition-title">为什么需要统一认证</p>
+</div>
 <p><img alt="image1.png" src="https://typora-images.chenshanb3.com/img/--4d39654eed44efd394ee857b88fa5d87.png" />
 通过以上两张图，可以很清楚的看出，使用统一认证以后：
 1.使用简单，使用者不需要记录多套账号密码；
 2.管理简单，管理者只需要管理一套用户信息；</p>
-<h2 id="_2">组件介绍<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_1">组件介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>前端使用的是开源的Vue模版<a href="https://github.com/PanJiaChen/vue-admin-template.git">vue-admin-template</a></li>
 <li>后端使用的是Django <a href="https://www.django-rest-framework.org">rest-framework</a>框架</li>
 <li>python版本：3.8.5以及以上</li>
 </ul>
-<h2 id="_3">部署手册<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">部署手册<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>前后端代码地址: <a href="https://github.com/chenshanb3/userscenter.git">github</a></p>
 <h3 id="1-settingspy">1. 修改后端配置文件 settings.py<a class="headerlink" href="#1-settingspy" title="Permanent link">&para;</a></h3>
 <p>修改数据库连接
