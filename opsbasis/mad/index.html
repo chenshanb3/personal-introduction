@@ -1,0 +1,855 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="运维知识共享">
+      
+      
+      
+      <link rel="icon" href="../../images/logo/logo-200.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+  <title>运愁维卧</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="运愁维卧" class="md-header__button md-logo" aria-label="运愁维卧" data-md-component="logo">
+      
+  <img src="../../images/logo/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            运愁维卧
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LDAP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chenshanb3/markdown" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        首页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        运维相关
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="运愁维卧" class="md-nav__button md-logo" aria-label="运愁维卧" data-md-component="logo">
+      
+  <img src="../../images/logo/logo.png" alt="logo">
+
+    </a>
+    运愁维卧
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chenshanb3/markdown" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          首页
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="首页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          首页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        欢迎
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          运维相关
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="运维相关" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          运维相关
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../https/" class="md-nav__link">
+        申请SSL证书
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geoip/" class="md-nav__link">
+        限制访问IP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          LDAP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        LDAP
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前言
+  </a>
+  
+    <nav class="md-nav" aria-label="前言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 什么是统一身份认证
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 为什么需要统一认证
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    组件介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    部署手册
+  </a>
+  
+    <nav class="md-nav" aria-label="部署手册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-settingspy" class="md-nav__link">
+    1. 修改后端配置文件 settings.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2uwsgi" class="md-nav__link">
+    2.使用uwsgi部署后端
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nginx" class="md-nav__link">
+    3. 使用nginx部署前端
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    FAQ
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-madssl" class="md-nav__link">
+    1. MAD域账号设置ssl证书访问
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前言
+  </a>
+  
+    <nav class="md-nav" aria-label="前言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 什么是统一身份认证
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 为什么需要统一认证
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    组件介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    部署手册
+  </a>
+  
+    <nav class="md-nav" aria-label="部署手册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-settingspy" class="md-nav__link">
+    1. 修改后端配置文件 settings.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2uwsgi" class="md-nav__link">
+    2.使用uwsgi部署后端
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nginx" class="md-nav__link">
+    3. 使用nginx部署前端
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    FAQ
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-madssl" class="md-nav__link">
+    1. MAD域账号设置ssl证书访问
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>LDAP</h1>
+
+<h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>（本帖持续更新，部署过程遇到问题欢迎提问）
+蓝鲸平台已经提供了支持LDAP协议的MAD和OpenLDAP的域账号接入，但是关于域账号的管理，比如找回密码、修改个人信息等功能是暂缺的，我想大牛们也在逐步完善，今天我就抛砖引玉，先提供一个简单的域账号管理后台，本系统采用Django+Vue前后端分离的方式开发的，需要一台服务器进行部署，可以部署在单独的服务器上，也可以部署在蓝鲸平台服务器上，能将端口通过nginx提供给用户访问即可。</p>
+<h3 id="1">1. 什么是统一身份认证<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>随着信息技术和网络技术的迅猛发展，企业内部的应用系统越来越多。比如在媒体行业，常见的应用系统就有采编系统、排版系统、印刷系统、广告管理系 统、财务系统、办公自动化系统、决策支持系统、客户关系管理系统和网站发布系统等。由于这些系统互相独立，用户在使用每个应用系统之前都必须按照 相应的系统身份进行登录，为此用户必须记住每一个系统的用户名和密码，这给用户带来了不少麻烦。特别是随着系统的增多，出错的可能性就会增加，受 到非法截获和破坏的可能性也会增大，安全性就会相应降低。针对于这种情况，统一用户认证、单点登录等概念应运而生，同时不断地被应用到企业应用系 统中。
+    所谓身份认证，就是判断一个用户是否为合法用户的处理过程。最常用的简单身份认证方式是系统通过核对用户输入的用户名和口令，看其是否与系统中存  储的该用户的用户名和口令一致，来判断用户身份是否正确。复杂一些的身份认证方式采用一些较复杂的加密算法与协议，需要用户出示更多的信息(如私钥) 来证明自己的身份，如Kerberos身份认证系统。
+身份认证一般与授权控制是相互联系的，授权控制是指一旦用户的身份通过认证以后，确定哪些资源该用户可以访问、可以进行何种方式的访问操作等问 题。在一个数字化的工作体系中，应该有一个统一的身份认证系统供各应用系统使用，但授权控制可以由各应用系统自己管理。</p>
+<h3 id="2">2. 为什么需要统一认证<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p><img alt="image1.png" src="https://typora-images.chenshanb3.com/img/--4d39654eed44efd394ee857b88fa5d87.png" />
+通过以上两张图，可以很清楚的看出，使用统一认证以后：
+1.使用简单，使用者不需要记录多套账号密码；
+2.管理简单，管理者只需要管理一套用户信息；</p>
+<h2 id="_2">组件介绍<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>前端使用的是开源的Vue模版<a href="https://github.com/PanJiaChen/vue-admin-template.git">vue-admin-template</a></li>
+<li>后端使用的是Django <a href="https://www.django-rest-framework.org">rest-framework</a>框架</li>
+<li>python版本：3.8.5以及以上</li>
+</ul>
+<h2 id="_3">部署手册<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>前后端代码地址: <a href="https://github.com/chenshanb3/userscenter.git">github</a></p>
+<h3 id="1-settingspy">1. 修改后端配置文件 settings.py<a class="headerlink" href="#1-settingspy" title="Permanent link">&para;</a></h3>
+<p>修改数据库连接
+<img alt="image2.png" src="https://typora-images.chenshanb3.com/img/--f15a109bf54115f5cddc12ffe668863e.png" />
+修改LDAP相关的信息
+<img alt="image3.png" src="https://typora-images.chenshanb3.com/img/--837610e21cec95dda100b2d0795104a7.png" />
+配置跨域访问白名单
+<img alt="image4.png" src="https://typora-images.chenshanb3.com/img/--9037d9dd2485d1f0d760934b6904a374.png" /></p>
+<h3 id="2uwsgi">2.使用uwsgi部署后端<a class="headerlink" href="#2uwsgi" title="Permanent link">&para;</a></h3>
+<p>runserver  -- start a lightweight web server for development, runserver只能使用于开发测试验证，部署到生产环境建议使用uwsgi，本工程的uwsgi已经配置好了，相关端口尽量保持不变。</p>
+<div class="highlight"><pre><span></span><code>python3 manage.py makemigrations
+python3 manage.py migrate
+pip3 install uwsgi  <span class="c1"># 一定要用pip安装，使用yum或者apt安装会启动报错</span>
+uwsgi --ini uwsgi.ini  <span class="c1"># 启动</span>
+uwsgi --stop uwsgi.pid  <span class="c1"># 停止</span>
+</code></pre></div>
+<h3 id="3-nginx">3. 使用nginx部署前端<a class="headerlink" href="#3-nginx" title="Permanent link">&para;</a></h3>
+<p>前端部署包，通常放在nignx/html目录下
+<img alt="image5.png" src="https://typora-images.chenshanb3.com/img/--d3dbcbc28b3100ba7564523b24506003.png" />
+配置文件如下</p>
+<div class="highlight"><pre><span></span><code>server <span class="o">{</span>
+        listen       <span class="m">5000</span><span class="p">;</span>   <span class="c1"># 5000端口不能改，前端已经写死了端口</span>
+        server_name  localhost<span class="p">;</span>
+
+        location / <span class="o">{</span>
+            include  uwsgi_params<span class="p">;</span>
+            <span class="c1">#uwsgi_modifier1 72;</span>
+            uwsgi_pass  unix:/data/userscenter/uwsgi.sock<span class="p">;</span>
+            uwsgi_param UWSGI_SCRIPT userscenter.wsgi<span class="p">;</span>
+            uwsgi_param UWSGI_CHDIR /data/userscenter<span class="p">;</span>
+            index  index.html index.htm<span class="p">;</span>
+            client_max_body_size 35m<span class="p">;</span>
+            access_log logs/uwsgi.log<span class="p">;</span>
+            error_log  logs/uwsgi.error error<span class="p">;</span>
+        <span class="o">}</span>
+<span class="o">}</span>
+
+server <span class="o">{</span>
+    listen   <span class="m">80</span><span class="p">;</span>
+    server_name  localhost<span class="p">;</span>
+    client_max_body_size    1024m<span class="p">;</span>
+    client_body_buffer_size 512k<span class="p">;</span>
+    proxy_connect_timeout <span class="m">1800</span><span class="p">;</span>
+    proxy_read_timeout <span class="m">1800</span><span class="p">;</span>
+    proxy_send_timeout <span class="m">1800</span><span class="p">;</span>
+    proxy_buffer_size 128k<span class="p">;</span>
+    proxy_buffers  <span class="m">32</span> 128k<span class="p">;</span>
+    proxy_busy_buffers_size 128k<span class="p">;</span>
+    proxy_temp_file_write_size 512k<span class="p">;</span>
+
+    gzip on<span class="p">;</span>
+    gzip_buffers <span class="m">4</span> 16k<span class="p">;</span>
+    gzip_http_version <span class="m">1</span>.0<span class="p">;</span>
+    gzip_comp_level <span class="m">5</span><span class="p">;</span>
+    gzip_vary on<span class="p">;</span>
+    charset utf-8,gbk<span class="p">;</span>
+    access_log off<span class="p">;</span>
+
+    location  / <span class="o">{</span>
+       root html/dist<span class="p">;</span>   <span class="c1"># dist存放的路径</span>
+       index index.html<span class="p">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>启动nginx以后，访问ip+80端口即可。
+<img alt="image6.png" src="https://typora-images.chenshanb3.com/img/--c0ea78a2a51a8038c2bbf7c19bfd9f6b.png" /></p>
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<h3 id="1-madssl">1. MAD域账号设置ssl证书访问<a class="headerlink" href="#1-madssl" title="Permanent link">&para;</a></h3>
+<p>很多人在使用时候，只能使用389端口，636端口会提示ssl证书错误，下面教大家如何设置AD域。
+创建证书颁发机构,添加Active Directory 证书服务 角色
+<img alt="image7.png" src="https://typora-images.chenshanb3.com/img/--691f6e07afcc18f0cb70ae57584e42f7.png" />
+<img alt="image8.png" src="https://typora-images.chenshanb3.com/img/--852c4724fbfb006fb822b8baef1b19a9.png" />
+<img alt="image9.png" src="https://typora-images.chenshanb3.com/img/--4de6cdb9932b3e2e6063c3425a24bef3.png" />
+<img alt="image10.png" src="https://typora-images.chenshanb3.com/img/--e6ccc868a2ffcf53a13c386c26c491ba.png" />
+<img alt="image11.png" src="https://typora-images.chenshanb3.com/img/--2229b6e60aecfcc92f3d6e3ca0631d7a.png" />
+<img alt="image12.png" src="https://typora-images.chenshanb3.com/img/--321d2f128b53847aff6b904f50728f15.png" />
+<img alt="image14.png" src="https://typora-images.chenshanb3.com/img/--b9c16de9c1dafadcc2c01b859d39c9c9.png" />
+<img alt="image13.png" src="https://typora-images.chenshanb3.com/img/--3dd0ac0e4ad433951e7f2629cd21885d.png" />
+<img alt="image15.png" src="https://typora-images.chenshanb3.com/img/--14388340311ae3fde41f577b08c66739.png" />
+<img alt="image16.png" src="https://typora-images.chenshanb3.com/img/--77b26546a92d6e58be9dc6165be675aa.png" />
+配置域证书
+点击通知-配置目标服务器上的Active Directory 证书服务
+<img alt="image17.png" src="https://typora-images.chenshanb3.com/img/--ad15ffc1822f2b792606c7a479c1529e.png" />
+<img alt="image18.png" src="https://typora-images.chenshanb3.com/img/--651972489437230f592378dbb33add48.png" />
+<img alt="image19.png" src="https://typora-images.chenshanb3.com/img/--f38d41c6a838ccdbbe49cdc33124d1f8.png" />
+<img alt="image20.png" src="https://typora-images.chenshanb3.com/img/--bf335a07f88ef4d6b94b5bc21f06c09f.png" />
+<img alt="image21.png" src="https://typora-images.chenshanb3.com/img/--8cc809622840111c51dce39fb9f2acb6.png" />
+<img alt="image22.png" src="https://typora-images.chenshanb3.com/img/--43a5cdf000fae743575cab08c2b5142c.png" />
+<img alt="image23.png" src="https://typora-images.chenshanb3.com/img/--084871dec4693a7016dc39a96afb1fb6.png" />
+<img alt="image24.png" src="https://typora-images.chenshanb3.com/img/--eef9209025d3ad3a2ac007ce3887d404.png" />
+<img alt="image25.png" src="https://typora-images.chenshanb3.com/img/--66eb0864f0b4fbb726dd6911cddb6844.png" />
+<img alt="image26.png" src="https://typora-images.chenshanb3.com/img/--f82c6e56bc0690070bb325d0e770dc63.png" />
+<img alt="image27.png" src="https://typora-images.chenshanb3.com/img/--8ad226eea24b3e24edd5df1018624320.png" />
+配置完成后，重启下服务器 
+在证书颁发机构中可以看到给域控颁发的证书 
+完成AD重启后，即可以进行使用VDI 636端口进行安全连接</p>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../geoip/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 限制访问IP" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              限制访问IP
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 By chenshanb3  &nbsp;&nbsp;&nbsp;网站备案号：皖ICP备2021012125号-2
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener" title="备案号" class="md-social__link">
+      <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated by Pixelmator Pro Trial 2.4.7 -->
+<svg width="1843" height="1859" viewBox="0 0 1843 1859" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="--7">
+        <linearGradient id="linearGradient1" x1="928.705253" y1="1474.222669" x2="928.705253" y2="329.970753" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.707107 0.707107 -0.707107 0.707107 908.211545 -387.31941)">
+            <stop offset="0" stop-color="#4b8cbf" stop-opacity="1"/>
+            <stop offset="0" stop-color="#4a8bbd" stop-opacity="1"/>
+            <stop offset="0.450087" stop-color="#417fb0" stop-opacity="1"/>
+            <stop offset="1" stop-color="#306998" stop-opacity="1"/>
+        </linearGradient>
+        <filter id="filter1" x="0" y="0" width="1843" height="1859" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feGaussianBlur stdDeviation="27"/>
+            <feOffset dx="-0" dy="27" result="offsetblur"/>
+            <feFlood flood-color="#000000" flood-opacity="0.5"/>
+            <feComposite in2="offsetblur" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <path id="path1" fill="url(#linearGradient1)" fill-rule="evenodd" stroke="none" filter="url(#filter1)" d="M 1022.986328 1812.59375 L 820.689453 1610.296875 L 820.492188 1610.492188 L 415.898438 1205.898438 L 416.09375 1205.703125 L 11.695313 801.304688 L 618.195313 194.804688 L 1022.59375 599.203125 L 820.492188 801.304688 L 1225.087891 1205.898438 L 1629.486328 801.5 L 1831.783203 1003.796875 L 1022.986328 1812.59375 Z"/>
+        <linearGradient id="linearGradient2" x1="1239.176682" y1="1013.595323" x2="1241.687082" y2="164.66607" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.707107 0.707107 -0.707107 0.707107 782.635379 -699.072608)">
+            <stop offset="0" stop-color="#e7b608" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ffe873" stop-opacity="1"/>
+        </linearGradient>
+        <filter id="filter2" x="0" y="0" width="1843" height="1859" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feGaussianBlur stdDeviation="27.054073"/>
+            <feOffset dx="-0" dy="12" result="offsetblur"/>
+            <feFlood flood-color="#000000" flood-opacity="0.5"/>
+            <feComposite in2="offsetblur" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <path id="path2" fill="url(#linearGradient2)" fill-rule="evenodd" stroke="none" filter="url(#filter2)" d="M 1225.675781 1177.894531 L 1043.548828 995.767578 L 1635.751953 403.564453 L 1817.878906 585.689453 L 1225.675781 1177.894531 Z M 1030.427734 982.646484 L 848.300781 800.521484 L 1440.505859 208.316406 L 1622.632813 390.443359 L 1030.427734 982.646484 Z M 1036.361328 585.044922 L 854.234375 402.917969 L 1244.671875 12.482422 L 1426.796875 194.609375 L 1036.361328 585.044922 Z"/>
+    </g>
+</svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>
