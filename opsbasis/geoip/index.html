@@ -539,19 +539,19 @@
 <li>如果你之前已经使用了nginx/tengine，最好先看看之前的编译参数，做到兼容，进入之前编译的目录（objs）
 <img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808182247/18438/20220808182247/--3c00953a64a25ffdd484e6c1f53899a4.png" />
 查询当时的一个编译参数(configure arguments)
-<div class="highlight"><pre><span></span><code>nginx -V
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>nginx -V
+</code></pre></div></td></tr></table></div>
 <img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808182407/18438/20220808182407/--d5064675f222298bea3c01e9836e6fe7.png" /></li>
 <li>将ngx_http_geoip2_module 模块放到服务器上，并赋予755、777权限</li>
 </ol>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808183040/18438/20220808183040/--f2cefeb274bf829ac3ab50b9d2ce9f8a.png" /></p>
 <p>在我们接下来的编译中需要带上上面的参数，在这些参数的基础上再加上：
-<div class="highlight"><pre><span></span><code>--add-module<span class="o">=</span>/opt/ngx_http_geoip2_module
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>--add-module<span class="o">=</span>/opt/ngx_http_geoip2_module
+</code></pre></div></td></tr></table></div>
 <img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808182707/18438/20220808182707/--4da72423f1d3ae265f7c78c851bd49d8.png" /></p>
 <p>编译过程没有报错就继续执行</p>
-<div class="highlight"><pre><span></span><code>make <span class="o">&amp;&amp;</span> make install
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make <span class="o">&amp;&amp;</span> make install
+</code></pre></div></td></tr></table></div>
 <h2 id="_4">开始配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>在安装完成以后，会在系统生成/usr/share/GeoIP/目录：
 <img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808182959/18438/20220808182959/--58657ce7fbb5ad065e9dc27587a27b08.png" /></p>
@@ -559,7 +559,20 @@
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808184400/18438/20220808184400/--8f3d5955f18446284bbdb5122f39a89f.png" /></p>
 <p>然后在服务器上解压，放在任意目录，我这里放在/data/tengine/GeoIP/目录下</p>
 <p>接下来需要配置一下nginx.conf的文件，在http模块里添加获取IP区域的函数</p>
-<div class="highlight"><pre><span></span><code>http <span class="o">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>http <span class="o">{</span>
     ...
     <span class="c1"># 禁止国外ip进行访问</span>
     geoip2 /data/tengine/GeoIP/GeoLite2-Country.mmdb <span class="o">{</span>
@@ -568,23 +581,39 @@
     <span class="o">}</span>
 
     map <span class="nv">$geoip2_data_country_code</span> <span class="nv">$allowed_country</span> <span class="o">{</span>
-         default no<span class="p">;</span>
-         CN yes<span class="p">;</span>
-    <span class="o">}</span>
+<span class="hll">         default no<span class="p">;</span>
+</span><span class="hll">         CN yes<span class="p">;</span>
+</span>    <span class="o">}</span>
     ...
 <span class="o">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808183452/18438/20220808183452/--a27215f319d8346fcbeb02551c8b527c.png" /></p>
 <p>配置好了以后就可以在我们自己的配置文件中直接引用了</p>
-<div class="highlight"><pre><span></span><code>server <span class="o">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>server <span class="o">{</span>
     listen       <span class="m">50001</span><span class="p">;</span>
     server_name  localhost<span class="p">;</span>
 
-    <span class="k">if</span> <span class="o">(</span><span class="nv">$allowed_country</span> <span class="o">=</span> no<span class="o">)</span> <span class="o">{</span>
-       <span class="c1"># return https://www.baidu.com;</span>
-        <span class="k">return</span> <span class="m">404</span><span class="p">;</span>
-    <span class="o">}</span>
-
+<span class="hll">    <span class="k">if</span> <span class="o">(</span><span class="nv">$allowed_country</span> <span class="o">=</span> no<span class="o">)</span> <span class="o">{</span>
+</span><span class="hll">       <span class="c1"># return https://www.baidu.com;</span>
+</span><span class="hll">        <span class="k">return</span> <span class="m">404</span><span class="p">;</span>
+</span><span class="hll">    <span class="o">}</span>
+</span>
     location / <span class="o">{</span>
         proxy_set_header Host <span class="nv">$host</span>:<span class="nv">$server_port</span><span class="p">;</span>
         proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
@@ -593,15 +622,19 @@
         proxy_pass http://127.0.0.1:1024<span class="p">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220808183613/18438/20220808183613/--80133c7a4e71da404063d038ecf5572c.png" /></p>
 <p>如果想放开香港的地址，可以改为</p>
-<div class="highlight"><pre><span></span><code>map <span class="nv">$geoip2_data_country_code</span> <span class="nv">$allowed_country</span> <span class="o">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>map <span class="nv">$geoip2_data_country_code</span> <span class="nv">$allowed_country</span> <span class="o">{</span>
          default no<span class="p">;</span>
          CN yes<span class="p">;</span>
          HK yes<span class="p">;</span>
     <span class="o">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>其他地区的可以按需放开，会科学上网的可以测试一下，我们的系统已经禁止非大陆的IP访问了</p>
 <h1 id="_5">总结<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
 <p>我们也不是专业的安全人员，以上操作只能防止国外的人访问我们的系统，并不能做到直接禁掉端口，所以不知道有没有用，只能心里安慰自己有大用。</p>

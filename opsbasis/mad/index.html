@@ -604,17 +604,63 @@
 <img alt="image4.png" src="https://typora-images.chenshanb3.com/img/--9037d9dd2485d1f0d760934b6904a374.png" /></p>
 <h3 id="2uwsgi">2.使用uwsgi部署后端<a class="headerlink" href="#2uwsgi" title="Permanent link">&para;</a></h3>
 <p>runserver  -- start a lightweight web server for development, runserver只能使用于开发测试验证，部署到生产环境建议使用uwsgi，本工程的uwsgi已经配置好了，相关端口尽量保持不变。</p>
-<div class="highlight"><pre><span></span><code>python3 manage.py makemigrations
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>python3 manage.py makemigrations
 python3 manage.py migrate
 pip3 install uwsgi  <span class="c1"># 一定要用pip安装，使用yum或者apt安装会启动报错</span>
 uwsgi --ini uwsgi.ini  <span class="c1"># 启动</span>
 uwsgi --stop uwsgi.pid  <span class="c1"># 停止</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h3 id="3-nginx">3. 使用nginx部署前端<a class="headerlink" href="#3-nginx" title="Permanent link">&para;</a></h3>
 <p>前端部署包，通常放在nignx/html目录下
 <img alt="image5.png" src="https://typora-images.chenshanb3.com/img/--d3dbcbc28b3100ba7564523b24506003.png" />
 配置文件如下</p>
-<div class="highlight"><pre><span></span><code>server <span class="o">{</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code>server <span class="o">{</span>
         listen       <span class="m">5000</span><span class="p">;</span>   <span class="c1"># 5000端口不能改，前端已经写死了端口</span>
         server_name  localhost<span class="p">;</span>
 
@@ -657,7 +703,7 @@ server <span class="o">{</span>
        index index.html<span class="p">;</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>启动nginx以后，访问ip+80端口即可。
 <img alt="image6.png" src="https://typora-images.chenshanb3.com/img/--c0ea78a2a51a8038c2bbf7c19bfd9f6b.png" /></p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>

@@ -586,38 +586,39 @@
 </ul>
 <h2 id="_3">申请证书<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="1-snapd">1. 安装snapd<a class="headerlink" href="#1-snapd" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>sudo yum install epel-release -y
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo yum install epel-release -y
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720222316/18438/20220720222316/--69ad58b0723b4038472d81a0ed99430a.png" /></p>
-<div class="highlight"><pre><span></span><code>sudo yum install snapd -y
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo yum install snapd -y
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720222427/18438/20220720222427/--5b106f5a4f0be831a38c5349c67c4b42.png" /></p>
-<div class="highlight"><pre><span></span><code>sudo systemctl <span class="nb">enable</span> --now snapd.socket
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo systemctl <span class="nb">enable</span> --now snapd.socket
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720222513/18438/20220720222513/--16f767677919b86b1e5af5a5c863f378.png" /></p>
-<div class="highlight"><pre><span></span><code>sudo service snapd start
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo service snapd start
 sudo ln -s /var/lib/snapd/snap /snap
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720222612/18438/20220720222612/--781b5b4813ae929694d7d7d3784082a9.png" /></p>
 <h3 id="2-certbot">2. 安装certbot<a class="headerlink" href="#2-certbot" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>sudo snap install core
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo snap install core
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720223157/18438/20220720223157/--520ca2d07ddabf97740ad3e87c391525.png" /></p>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720223328/18438/20220720223328/--cf0e10023f73eff00466f7362b41813a.png" /></p>
-<div class="highlight"><pre><span></span><code>sudo snap refresh core
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo snap refresh core
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720223503/18438/20220720223503/--f8d99b19eb354e84e3fa9931c5c0dff5.png" /></p>
-<div class="highlight"><pre><span></span><code>sudo snap install --classic certbot
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo snap install --classic certbot
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720223548/18438/20220720223548/--95c7ca55d5aa072474f7a3cb568511ce.png" /></p>
-<div class="highlight"><pre><span></span><code>sudo ln -s /snap/bin/certbot /usr/bin/certbot
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720223623/18438/20220720223623/--2f03f58ece7f16f784e4f1e7c1078e26.png" /></p>
 <p>至此certbot安装已完成，接下来就是申请证书了</p>
 <h3 id="3">3. 证书申请<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>这是使用的是泛解析域名，填写蓝鲸平台的主域名就可以了</p>
-<div class="highlight"><pre><span></span><code>certbot certonly --email 邮箱地址 -d *.平台主域名 --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory 
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>certbot certonly --email 邮箱地址 -d *.平台主域名 --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory 
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720233208/18438/20220720233208/--1632db4e3a3196ab3abb9a6326a6e9b9.png" /></p>
 <p>在域名控制台，将下面的TXT格式的解析和域名做个解析，这是域名所属权的校验</p>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720224202/18438/20220720224202/--26d32100b98e7e4f0a5c911eb1724faf.png" /></p>
@@ -627,11 +628,51 @@ sudo ln -s /var/lib/snapd/snap /snap
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220720224531/18438/20220720224531/--7a03ee59e3964f00b85be2b6c82540cc.png" /></p>
 <h3 id="4">4. 证书续费（自动续费）<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <p>其实续费很简单，流程和申请一样：</p>
-<div class="highlight"><pre><span></span><code>certbot renew  --cert-name zkmlops.com <span class="c1"># 证书有效期小于30天才会renew</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>certbot renew  --cert-name zkmlops.com <span class="c1"># 证书有效期小于30天才会renew</span>
 certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强行renew</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p>但是每次都需要手动更新域名解析的值，这很不“运维”，我想让他可以自己更新域名解析。各种翻阅资料，查询华为API文档后，真被我捣鼓出来了，直接放代码：</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 
 <span class="kn">from</span> <span class="nn">huaweicloudsdkcore.auth.credentials</span> <span class="kn">import</span> <span class="n">BasicCredentials</span>
 <span class="kn">from</span> <span class="nn">huaweicloudsdkcore.exceptions</span> <span class="kn">import</span> <span class="n">exceptions</span>
@@ -639,9 +680,9 @@ certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强�
 <span class="kn">from</span> <span class="nn">huaweicloudsdkdns.v2</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">domain</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CERTBOT_DOMAIN&quot;</span><span class="p">]</span>
-<span class="n">value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CERTBOT_VALIDATION&quot;</span><span class="p">]</span>
-
+<span class="hll"><span class="n">domain</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CERTBOT_DOMAIN&quot;</span><span class="p">]</span>
+</span><span class="hll"><span class="n">value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CERTBOT_VALIDATION&quot;</span><span class="p">]</span>
+</span>
 <span class="n">ak</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="n">sk</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
@@ -661,9 +702,9 @@ certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强�
     <span class="p">]</span>
     <span class="n">request</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">UpdateRecordSetReq</span><span class="p">(</span>
         <span class="n">records</span><span class="o">=</span><span class="n">listUpdateRecordSetReqRecordsbody</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;TXT&quot;</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;_acme-challenge.xxxxx.com.&quot;</span>
-    <span class="p">)</span>
+<span class="hll">        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;TXT&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;_acme-challenge.xxxxx.com.&quot;</span>
+</span>    <span class="p">)</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">update_record_set</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">ClientRequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -671,7 +712,7 @@ certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强�
     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">request_id</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">error_msg</span><span class="p">)</span>
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <p><img alt="image.png" src="https://smartpublic-10032816.file.myqcloud.com/custom/20220721001225/18438/20220721001225/--e86c27df96016c5563ec928522715d32.png" /></p>
 <p>因为我的域名是在华为上申请的，所以我只捣鼓出了华为的脚本，阿里的脚本你们自己捣鼓吧：
 - 华为API调试控制台：https://apiexplorer.developer.huaweicloud.com/apiexplorer/sdk?product=DNS&amp;api=ListRecordSets
@@ -683,11 +724,14 @@ certbot renew   --force-renewal --cert-name zkmlops.com <span class="c1"># 强�
 <div class="highlight"><pre><span></span><code>0 0 15 * * certbot renew  --cert-name chenshanb3.com --manual-auth-hook /path/to/certbot_renew_hw.py
 </code></pre></div>
 <p>域名续费以后，就不需要那么复杂的操作了，更换中控机上的证书以后，执行下面的4条命令就可以了：</p>
-<div class="highlight"><pre><span></span><code>./bkcli sync cert
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>./bkcli sync cert
 ./bkcli install cert
 ./bkcli restart nginx
 /data/src/ci/scripts/bk-ci-utils-https.sh https
-</code></pre></div>
+</code></pre></div></td></tr></table></div>
 <h2 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>虽然每三个月续费一次很麻烦，但是架不住免费呀，在专业机构申请证书动不动就是几万、几十万，使用免费的，运维成本不就降下来了（手动滑稽）～～～
 市面上还有很多域名申请的软件和服务，比如“宝塔面板”，官网地址：https://www.bt.cn/new/index.html，我也安装体验了一下，以下观点只代表我个人：
